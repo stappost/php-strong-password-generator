@@ -1,17 +1,6 @@
 <?php
-    if(isset($_GET['length'])){
-        // CARATTERI
-        $allChar = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890?!.,/[]{}&@#';
-        // LUNGHEZZA DESIDERATA 
-        $passLen = $_GET['length'];
-        // PASSWORD DA RESTITURE 
-        $password = [];
-        // CICLO 
-        while(count($password) < $passLen){
-            $password[] = $allChar[rand(0, strlen($allChar))];
-        }
-        $password = implode($password);
-    }
+    $passLen = $_GET['length'];
+    include __DIR__.'/partials/functions.php';
 ?>
 
 <!DOCTYPE html>
@@ -27,6 +16,6 @@
         <input type="number" placeholder='Lunghezza password da generare' name='length' id='length'>
     </form>
     <h2>Ecco la tua password</h2>
-    <h3><?php echo $password ?? 'no'?></h3>
+    <h3><?php echo generatePassword($passLen) ?? 'no'?></h3>
 </body>
 </html>
